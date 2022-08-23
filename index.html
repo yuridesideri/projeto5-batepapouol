@@ -12,7 +12,7 @@
     <section class="entry-page">
         <div><img src="imgs/logo.png" alt="Uol-chat Logo"></div>
             <input type="text" placeholder="Digite seu nome">
-            <button>Entrar</button>
+            <button onclick="logIn(document.querySelector('input').value)">Entrar</button>
     </section>
     <section class="main-chat hide-element">
         <header>
@@ -24,10 +24,10 @@
                 <ion-icon name="people"></ion-icon>
             </div> 
         </header>
-        <main class="hide-element">
+        <main>
 
         </main>
-        <nav class="hide-element">
+        <nav>
             <div class="real-side-bar">
                 <div id="message-directioning" class="side-bar-group">
                     <p>Escolha um contato para enviar mensagem:</p>
@@ -65,7 +65,7 @@
                 </div>
             </div>
         </nav>
-        <footer class="hide-element">
+        <footer>
             <div class="footer-text-divs">
                 <textarea placeholder="Escreva aqui..." type="text"></textarea>
                 <p>Enviando para *fulano* (privado)</p>

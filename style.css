@@ -28,6 +28,7 @@ html{
     border-radius: 4px; 
     width: 261px;
     height: 54px;
+    outline: none;
 }
 .entry-page>input::placeholder{
     color: #AEAEAE;
@@ -45,8 +46,10 @@ html{
     border: 0;
     margin-top: 15px;
     color: #696969;
+    transition-duration: 0.5s;
 }
 .entry-page>button:active{
+    transition-duration: 0s;
     background-color: #bdbdbd;
 }
 
@@ -214,9 +217,10 @@ footer{
     border: 0;
     background-color: transparent;
     border-radius: 18px;
+    transition-duration: 0.5s;
 }
 .icon-footer-div:active{
-    transition: 0.2s;
+    transition: 0s;
     border-radius: 18px;
     background-color: rgb(191, 191, 191);
 }
@@ -235,4 +239,19 @@ footer{
 /* js classes */
 .hide-element{
     display: none;
+}
+
+.logIn-warning{
+    color: red;
+    opacity: 0.6;
+    animation-name: warning-blink;
+    animation-duration: 1.2s;
+    margin-top: 20px;
+}
+
+/* css animaiton */
+@keyframes warning-blink{
+    0% {opacity: 0; margin-top: 0px;}
+    50% {opacity: 0.6; margin-top: 20px;}
+    100% {opacity: 0;}
 }
