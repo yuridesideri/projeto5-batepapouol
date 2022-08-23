@@ -13,8 +13,13 @@ html{
 .entry-page{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+    height: 100%;
+    background-color: var(--main-color-light);
 }
 
 .entry-page>div{
@@ -84,6 +89,7 @@ header>div{
 
 .icons{
     font-size: 42px;
+    border-radius: 32px;
 }
 
 
@@ -112,7 +118,7 @@ nav{
     justify-content: flex-end; 
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 2;
-
+    overflow: hidden;
 }
 .real-side-bar{
     width: 259px;
@@ -143,7 +149,10 @@ nav{
 .side-bar-selection{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 0 24px 15px 24px;
+    height: 30px;
+    border-radius: 5px;
 }
 .side-bar-selection>div{
     display: flex;
@@ -152,11 +161,15 @@ nav{
 .side-bar-selection>div>ion-icon{
     font-size: 20px;
     margin-right: 8.5px;
+    margin-left: 5px;
     transform: translate(0px, -0.5px);
 }
 .side-bar-selection>div>p{
     font-size: 16px;
     font-weight: 400;
+}
+.side-bar-selection>.checked{
+    margin-right: 5px;
 }
 
 
@@ -217,23 +230,40 @@ footer{
     border: 0;
     background-color: transparent;
     border-radius: 18px;
-    transition-duration: 0.5s;
 }
-.icon-footer-div:active{
-    transition: 0s;
-    border-radius: 18px;
-    background-color: rgb(191, 191, 191);
-}
+
 .icon-footer-div>ion-icon{
     font-size: 26px;
     margin-right: 4px;
     margin-top: 4px;
 }
 
+.logout-div{
+    justify-content: flex-start;
+    margin-top: auto;
+    color: red;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+.logout-div>p{
+    margin-left: 5px;
+}
 
 
 
-
+/*global classes*/
+.clickable-element{
+    transition: 0.5s;
+}
+.clickable-element:active{
+    transition: 0s;
+    background-color: rgb(191, 191, 191);
+}
+.side-bar-return-div{
+    height: 100%;
+    width: calc(100% - 259px);
+    margin-right: auto;
+}
 
 
 /* js classes */
@@ -248,10 +278,43 @@ footer{
     animation-duration: 1.2s;
     margin-top: 20px;
 }
+.logIn-screen-animation{
+    animation-name: logIn-screen-animation;
+    animation-duration: 1.1s;
+
+}
+.side-bar-animation-comeIn{
+    animation-name: side-bar-animation;
+    animation-duration: 0.8s;
+}
+.side-bar-animation-comeOut{
+    animation-name: side-bar-animation;
+    animation-direction: reverse;
+    animation-duration: 0.8s;
+}
+.block-click{
+    pointer-events: none;
+}
+
+
 
 /* css animaiton */
 @keyframes warning-blink{
     0% {opacity: 0; margin-top: 0px;}
     50% {opacity: 0.6; margin-top: 20px;}
     100% {opacity: 0;}
+}
+
+@keyframes logIn-screen-animation{
+    from {transform: translate(0, 0);}
+    to {transform: translate(100vw,0);}
+}
+
+@keyframes click-animation{
+    50% {background-color: rgb(191, 191, 191)}
+}
+
+@keyframes side-bar-animation{
+    from {transform: translate(100vw)};
+    to {transform: translate(0)};
 }

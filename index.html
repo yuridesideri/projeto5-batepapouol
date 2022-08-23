@@ -20,25 +20,26 @@
                 <img src="imgs/logo.png" width="
                 75px" height="53px" alt="Uol-chat Logo">
             </div>
-            <div class="icons">
+            <div class="icons clickable-element" onclick="sideBarComeUp(this)">
                 <ion-icon name="people"></ion-icon>
             </div> 
         </header>
         <main>
 
         </main>
-        <nav>
+        <nav class="hide-element">
+            <div class="side-bar-return-div" onclick="sideBarReturn(this)"></div>
             <div class="real-side-bar">
                 <div id="message-directioning" class="side-bar-group">
                     <p>Escolha um contato para enviar mensagem:</p>
-                    <div class="side-bar-selection">
+                    <div class="side-bar-selection clickable-element">
                         <div>
                             <ion-icon name="people"></ion-icon>
                             <p>Todos</p>
                         </div>
                         <div class="checked"><img src="imgs/Vector.png" alt="" width="9px" height="7px"></div>
                     </div>
-                    <div class="side-bar-selection">
+                    <div class="side-bar-selection clickable-element">
                         <div>
                             <ion-icon name="person-circle-outline"></ion-icon>
                             <p>Eu</p>
@@ -48,20 +49,24 @@
                 </div>
                 <div class="side-bar-group" id="message-visibility">
                     <p>Escolha a visibilidade:</p>
-                    <div class="side-bar-selection">
+                    <div class="side-bar-selection clickable-element">
                         <div>
                             <ion-icon name="lock-open"></ion-icon>
                             <p>Público</p>
                         </div>
                         <div class="checked"><img src="imgs/Vector.png" alt="" width="9px" height="7px"></div>
                     </div>
-                    <div class="side-bar-selection">
+                    <div class="side-bar-selection clickable-element">
                         <div>
                             <ion-icon name="lock-closed"></ion-icon>
                             <p>Privado</p>
                         </div>
                         <div class="checked"><!--<img src="imgs/Vector.png" alt="">--></div>
                     </div>
+                </div>
+                <div class="logout-div clickable-element side-bar-selection">
+                    <ion-icon name="exit-outline"></ion-icon>
+                    <p>Exit</p>
                 </div>
             </div>
         </nav>
@@ -70,7 +75,7 @@
                 <textarea placeholder="Escreva aqui..." type="text"></textarea>
                 <p>Enviando para *fulano* (privado)</p>
             </div>
-            <button class="icon-footer-div">   
+            <button class="icon-footer-div clickable-element">   
                 <ion-icon name="paper-plane"></ion-icon>
             </button>
         </footer>
