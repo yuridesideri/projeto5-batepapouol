@@ -1,0 +1,9 @@
+.entry-page{
+    display:none;
+}
+
+.main-chat{
+    display: flex;
+    flex-direction: column;
+}
+
