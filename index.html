@@ -11,25 +11,72 @@
 <body>
     <section class="entry-page">
         <div><img src="imgs/logo.png" alt="Uol-chat Logo"></div>
-            <input type="text">
+            <input type="text" placeholder="Digite seu nome">
             <button>Entrar</button>
     </section>
-    <section class="main-chat">
+    <section class="main-chat hide-element">
         <header>
             <div class="logo">
-                <img src="imgs/logo.png" alt="Uol-chat Logo">
+                <img src="imgs/logo.png" width="
+                75px" height="53px" alt="Uol-chat Logo">
             </div>
             <div class="icons">
-                <ion-icon name="person"></ion-icon>
-                <ion-icon name="person"></ion-icon>
+                <ion-icon name="people"></ion-icon>
             </div> 
         </header>
-        <main>
+        <main class="hide-element">
 
         </main>
-        <nav></nav>
-        <footer></footer>
+        <nav class="hide-element">
+            <div class="real-side-bar">
+                <div id="message-directioning" class="side-bar-group">
+                    <p>Escolha um contato para enviar mensagem:</p>
+                    <div class="side-bar-selection">
+                        <div>
+                            <ion-icon name="people"></ion-icon>
+                            <p>Todos</p>
+                        </div>
+                        <div class="checked"><img src="imgs/Vector.png" alt="" width="9px" height="7px"></div>
+                    </div>
+                    <div class="side-bar-selection">
+                        <div>
+                            <ion-icon name="person-circle-outline"></ion-icon>
+                            <p>Eu</p>
+                        </div>
+                        <div class="checked"><!-- <img src="imgs/Vector.png" alt=""> --> </div>
+                    </div>
+                </div>
+                <div class="side-bar-group" id="message-visibility">
+                    <p>Escolha a visibilidade:</p>
+                    <div class="side-bar-selection">
+                        <div>
+                            <ion-icon name="lock-open"></ion-icon>
+                            <p>Público</p>
+                        </div>
+                        <div class="checked"><img src="imgs/Vector.png" alt="" width="9px" height="7px"></div>
+                    </div>
+                    <div class="side-bar-selection">
+                        <div>
+                            <ion-icon name="lock-closed"></ion-icon>
+                            <p>Privado</p>
+                        </div>
+                        <div class="checked"><!--<img src="imgs/Vector.png" alt="">--></div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <footer class="hide-element">
+            <div class="footer-text-divs">
+                <textarea placeholder="Escreva aqui..." type="text"></textarea>
+                <p>Enviando para *fulano* (privado)</p>
+            </div>
+            <button class="icon-footer-div">   
+                <ion-icon name="paper-plane"></ion-icon>
+            </button>
+        </footer>
     </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
