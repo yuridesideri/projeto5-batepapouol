@@ -81,6 +81,7 @@ header{
     top: 0;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
     border-radius: 0 0 15px 15px;
+    z-index: 1;
 }
 
 header>div{
@@ -98,10 +99,28 @@ header>div{
 
 
 main{
-    background-color: var(--background-color-light);
+    background-color: #ffffff;
     min-height: 667px;
     width: 100%;
     height: 100%;
+    z-index: 0;
+}
+.messages-container{
+    margin-top: 90px;
+    margin-bottom: 90px;
+    box-sizing: border-box;
+}
+.message{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding: 10px 8px 10px 8px;
+    background-color: var(--main-color-light);
+}
+.status{
+    background-color: #DCDCDC;
+}
+.private-message{
+    background-color: #FFDEDE;
 }
 
 
@@ -114,10 +133,10 @@ nav{
     display: flex;
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: fixed;
     justify-content: flex-end; 
     background-color: rgba(0, 0, 0, 0.6);
-    z-index: 2;
+    z-index: 3;
     overflow: hidden;
 }
 .real-side-bar{
@@ -129,6 +148,7 @@ nav{
     border-radius: 15px 0 0 15px;
     display: flex;
     flex-direction: column;
+    z-index: 3;
 }
 
 .side-bar-group{
