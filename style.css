@@ -122,6 +122,12 @@ main{
 .private-message{
     background-color: #FFDEDE;
 }
+.message-person{
+    font-weight: 700;
+}
+.message-time{
+    color: #AAAAAA;
+}
 
 
 

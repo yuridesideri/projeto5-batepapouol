@@ -36,35 +36,35 @@
                 <div id="message-directioning" class="side-bar-group">
                     <p>Escolha um contato para enviar mensagem:</p>
                     <div class="side-bar-selection clickable-element">
-                        <div>
+                        <div class="checked">
                             <ion-icon name="people"></ion-icon>
                             <p>Todos</p>
                         </div>
-                        <div class="checked"><img src="imgs/Vector.png" alt="" width="9px" height="7px"></div>
+                        <div><img src="imgs/Vector.png" alt="" width="9px" height="7px"></div>
                     </div>
                     <div class="side-bar-selection clickable-element">
                         <div>
                             <ion-icon name="person-circle-outline"></ion-icon>
                             <p>Eu</p>
                         </div>
-                        <div class="checked"><!-- <img src="imgs/Vector.png" alt=""> --> </div>
+                        <div><!-- <img src="imgs/Vector.png" alt=""> --> </div>
                     </div>
                 </div>
                 <div class="side-bar-group" id="message-visibility">
                     <p>Escolha a visibilidade:</p>
                     <div class="side-bar-selection clickable-element">
-                        <div>
+                        <div class="checked">
                             <ion-icon name="lock-open"></ion-icon>
                             <p>Público</p>
                         </div>
-                        <div class="checked"><img src="imgs/Vector.png" alt="" width="9px" height="7px"></div>
+                        <div><img src="imgs/Vector.png" alt="" width="9px" height="7px"></div>
                     </div>
                     <div class="side-bar-selection clickable-element">
                         <div>
                             <ion-icon name="lock-closed"></ion-icon>
                             <p>Privado</p>
                         </div>
-                        <div class="checked"><!--<img src="imgs/Vector.png" alt="">--></div>
+                        <div><!--<img src="imgs/Vector.png" alt="">--></div>
                     </div>
                 </div>
                 <div class="logout-div clickable-element side-bar-selection">
@@ -78,7 +78,7 @@
                 <textarea placeholder="Escreva aqui..." type="text"></textarea>
                 <p>Enviando para *fulano* (privado)</p>
             </div>
-            <button class="icon-footer-div clickable-element">   
+            <button class="icon-footer-div clickable-element" onclick="sendMessage(this);">   
                 <ion-icon name="paper-plane"></ion-icon>
             </button>
         </footer>

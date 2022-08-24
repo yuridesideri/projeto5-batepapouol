@@ -128,3 +128,15 @@ function populateChat(chatHistory)
         console.log('Populated!');
     }
 }
+
+function sendMessage()
+{
+    let messageText = document.querySelector('.footer-text-divs>textarea').value;
+    let message = {
+        from: user.userName,
+	    to: document.querySelector("#message-directioning").querySelector(".checked").children[1].innerHTML,
+	    text: messageText,
+	    type: document.querySelector("#message-visibility").querySelector(".checked").children[1].innerHTML === 'Público'?'message':'private_message'
+    };
+    axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', message).then(populateChat);
+}

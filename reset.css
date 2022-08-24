@@ -48,4 +48,8 @@ table {
 	border-spacing: 0;
 }
 
+:root, :root::-webkit-scrollbar{
+		-ms-overflow-style: none;  /* IE and Edge */
+		scrollbar-width: none;  /* Firefox */
 
+}
