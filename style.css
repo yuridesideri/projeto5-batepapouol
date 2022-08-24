@@ -17,7 +17,7 @@ html{
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 3;
+    z-index: 4;
     height: 100%;
     background-color: var(--main-color-light);
 }
@@ -307,7 +307,11 @@ footer{
 .logIn-screen-animation{
     animation-name: logIn-screen-animation;
     animation-duration: 1.1s;
-
+}
+.logOut-screen-animation{
+    animation-name: logIn-screen-animation;
+    animation-duration: 1.1s;
+    animation-direction: reverse;
 }
 .side-bar-animation-comeIn{
     animation-name: side-bar-animation;
@@ -320,6 +324,15 @@ footer{
 }
 .block-click{
     pointer-events: none;
+}
+.fadeIn{
+    animation-name: fade-in-animation;
+    animation-duration: 0.8s;
+}
+.fadeOut{
+    animation-name: fade-in-animation;
+    animation-duration: 0.8s;
+    animation-direction: reverse;
 }
 
 
@@ -341,6 +354,10 @@ footer{
 }
 
 @keyframes side-bar-animation{
-    from {transform: translate(100vw)};
+    from {transform: translate(100%)};
     to {transform: translate(0)};
+}
+@keyframes fade-in-animation{
+    from {opacity: 0};
+    to {opacity: 1};
 }

@@ -6,7 +6,32 @@ const user = {
     serverConnections: {onlineUpdate: "", messagePopulate: ""}
 }
 
-//Run-Time Functions:
+//SideBar Animations
+function sideBarComeUp(element)
+{
+    let sidebar = document.querySelector("nav");
+    element.classList.add("block-click");
+    setTimeout(()=>{element.classList.remove("block-click");}, 300);
+    sidebar.classList.remove("hide-element");
+    sidebar.classList.add("block-click");
+    sidebar.classList.add("fadeIn");
+    sidebar.children[1].classList.add("side-bar-animation-comeIn");
+    setTimeout(()=>{sidebar.children[1].classList.remove("side-bar-animation-comeIn");}, 790);
+    setTimeout(()=>{sidebar.classList.remove("block-click");}, 790);
+    setTimeout(()=>{sidebar.classList.remove("fadeIn");}, 790);
+}
+function sideBarReturn()
+{
+    let sidebar = document.querySelector("nav");
+    sidebar.children[1].classList.add("side-bar-animation-comeOut");
+    sidebar.classList.add("fadeOut");
+    setTimeout(()=>{sidebar.children[1].classList.remove("side-bar-animation-comeOut");}, 800);
+    setTimeout(()=>{sidebar.classList.add("hide-element");}, 780);
+    setTimeout(()=>{sidebar.classList.remove("fadeOut");}, 780);
+
+}
+
+//Recall Functions
 function logIn(username, check)
 {
     check = check || 0;
@@ -57,29 +82,6 @@ function logIn(username, check)
     }
 }
 
-//SideBar Functions
-function sideBarComeUp(element)
-{
-    let sidebar = document.querySelector("nav");
-    element.classList.add("block-click");
-    setTimeout(()=>{element.classList.remove("block-click");}, 300);
-    sidebar.classList.remove("hide-element");
-    sidebar.classList.add("block-click");
-    sidebar.children[1].classList.add("side-bar-animation-comeIn");
-    setTimeout(()=>{sidebar.children[1].classList.remove("side-bar-animation-comeIn");}, 790);
-    setTimeout(()=>{sidebar.classList.remove("block-click");}, 790);
-}
-
-function sideBarReturn()
-{
-    let sidebar = document.querySelector("nav");
-    sidebar.children[1].classList.add("side-bar-animation-comeOut");
-    setTimeout(()=>{sidebar.children[1].classList.remove("side-bar-animation-comeOut");}, 800);
-    setTimeout(()=>{sidebar.classList.add("hide-element");}, 780);
-
-}
-
-//Recall Functions
 function populateChat(chatHistory)
 {
     chatHistory = chatHistory || 0;
@@ -125,7 +127,6 @@ function populateChat(chatHistory)
             messagesDiv.appendChild(tmpElement);
             tmpElement.scrollIntoView();
         }
-        console.log('Populated!');
     }
 }
 
@@ -138,5 +139,34 @@ function sendMessage()
 	    text: messageText,
 	    type: document.querySelector("#message-visibility").querySelector(".checked").children[1].innerHTML === 'Público'?'message':'private_message'
     };
-    axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', message).then(populateChat);
+    axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', message).then(populateChat()).catch((error) => {axiosError(error)});
 }
+
+function resetData()
+{
+    document.querySelector(".entry-page").classList.remove("hide-element");
+    document.querySelector(".entry-page").classList.add("logOut-screen-animation");
+    document.querySelector('.footer-text-divs>textarea').value = '';
+    setTimeout(()=>{window.location.reload()}, 1100);
+
+}
+
+//Handle Console.log Axios Errors
+function axiosError(error) {
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else if (error.request) {
+      // The request was made but no response was received
+      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+      // http.ClientRequest in node.js
+      console.log(error.request);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log('Error', error.message);
+    }
+    console.log(error.config);
+  }
