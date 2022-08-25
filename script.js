@@ -63,7 +63,7 @@ function logIn(username, check)
         document.querySelector(".main-chat").classList.toggle("hide-element");
         populateChat();
         axios.get('https://mock-api.driven.com.br/api/v6/uol/participants').then(response => user.serverConnections.onlinePeople = response.data).catch(error => axiosError(error));
-        updateContactList();
+        setTimeout(updateContactList, 500);
     }
 
     else if (check === 0 & username.length <= 20 && username !== "" && !(username.includes(" "))) //Bom nome, checando se está em uso.
@@ -181,7 +181,7 @@ function updateContactList()
     `
     <p>Escolha um contato para enviar mensagem:</p>
     <div class="selection-div">
-        <div class="side-bar-selection clickable-element checked test" onclick="changeContactSelection(this)">
+        <div class="side-bar-selection clickable-element checked all-unmutable-class" onclick="changeContactSelection(this)">
             <div>
                 <ion-icon name="people"></ion-icon>
                 <p>Todos</p>
@@ -193,7 +193,7 @@ function updateContactList()
     for (let i = 0; i < user.serverConnections.onlinePeople.length; i++)
     {
         tmpString = `${user.serverConnections.onlinePeople[i].name}`
-        tmpElement = document.createElement('p');
+        tmpElement = document.createElement('div');
         tmpElement.classList.add('side-bar-selection', 'clickable-element', 'unchecked', `${user.serverConnections.onlinePeople[i].name}`);
         tmpElement.setAttribute('onclick', 'changeContactSelection(this)');
 
@@ -206,7 +206,7 @@ function updateContactList()
         <div><img src="imgs/Vector.png" alt="" width="11px" height="9px"></div>
         `;
 
-        document.querySelector('#message-directioning').appendChild(tmpElement);
+        document.querySelector('.selection-div').appendChild(tmpElement);
     }
 
     if (document.querySelector(`.${contactInTimeSelected}`) !== null)
@@ -215,7 +215,7 @@ function updateContactList()
         }
     else
         {
-            changeContactSelection(document.querySelector('.test'));
+            changeContactSelection(document.querySelector('.all-unmutable-class'));
         }
 }
 //Handle Console.log Axios Errors
