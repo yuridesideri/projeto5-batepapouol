@@ -56,7 +56,7 @@ function logIn(username, check)
         user.userName = username;
         user.serverConnections.onlineUserUpdate = setInterval(()=>{axios.post('https://mock-api.driven.com.br/api/v6/uol/status', {name: username})}, 5000);
         user.serverConnections.messageUpdate = setInterval(()=>{populateChat()}, 5000);
-        user.serverConnections.contactUpdate = [setInterval(()=>{axios.get('https://mock-api.driven.com.br/api/v6/uol/participants').then(response => user.serverConnections.onlinePeople = response.data).catch(error => axiosError(error))}, 10000), setInterval(() => {updateContactList()}, 10000)];
+        user.serverConnections.contactUpdate = [setInterval(()=>{axios.get('https://mock-api.driven.com.br/api/v6/uol/participants').then(response => user.serverConnections.onlinePeople = response.data).catch(error => axiosError(error))}, 5000), setInterval(() => {updateContactList()}, 10000)];
         document.querySelector(".entry-page").classList.add("logIn-screen-animation");
         setTimeout(()=>{document.querySelector(".entry-page").classList.add("hide-element");}, 1000);
         setTimeout(()=>{document.querySelector(".entry-page").classList.remove("logIn-screen-animation");}, 1000);
@@ -194,7 +194,7 @@ function updateContactList()
     {
         tmpString = `${user.serverConnections.onlinePeople[i].name}`
         tmpElement = document.createElement('div');
-        tmpElement.classList.add('side-bar-selection', 'clickable-element', 'unchecked', `${user.serverConnections.onlinePeople[i].name}`);
+        tmpElement.classList.add('side-bar-selection', 'clickable-element', 'unchecked', `${user.serverConnections.onlinePeople[i].name.replace(" ", "")}`);
         tmpElement.setAttribute('onclick', 'changeContactSelection(this)');
 
         tmpElement.innerHTML = 
