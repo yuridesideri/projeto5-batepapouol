@@ -199,10 +199,6 @@ nav{
     font-size: 16px;
     font-weight: 400;
 }
-.side-bar-selection>.checked{
-    margin-right: 5px;
-}
-
 .logout-div{
     justify-content: flex-start;
     margin-top: auto;

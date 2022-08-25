@@ -56,13 +56,14 @@ function logIn(username, check)
         user.userName = username;
         user.serverConnections.onlineUserUpdate = setInterval(()=>{axios.post('https://mock-api.driven.com.br/api/v6/uol/status', {name: username})}, 5000);
         user.serverConnections.messageUpdate = setInterval(()=>{populateChat()}, 5000);
-        user.serverConnections.contactUpdate = setInterval(()=>{axios.get('https://mock-api.driven.com.br/api/v6/uol/participants').then(response => user.serverConnections.onlinePeople = response.data).catch(error => axiosError(error));}, 10000);
+        user.serverConnections.contactUpdate = [setInterval(()=>{axios.get('https://mock-api.driven.com.br/api/v6/uol/participants').then(response => user.serverConnections.onlinePeople = response.data).catch(error => axiosError(error))}, 10000), setInterval(() => {updateContactList()}, 10000)];
         document.querySelector(".entry-page").classList.add("logIn-screen-animation");
         setTimeout(()=>{document.querySelector(".entry-page").classList.add("hide-element");}, 1000);
         setTimeout(()=>{document.querySelector(".entry-page").classList.remove("logIn-screen-animation");}, 1000);
         document.querySelector(".main-chat").classList.toggle("hide-element");
         populateChat();
         axios.get('https://mock-api.driven.com.br/api/v6/uol/participants').then(response => user.serverConnections.onlinePeople = response.data).catch(error => axiosError(error));
+        updateContactList();
     }
 
     else if (check === 0 & username.length <= 20 && username !== "" && !(username.includes(" "))) //Bom nome, checando se está em uso.
@@ -171,6 +172,52 @@ function changeContactSelection(element)
 
 }
 
+function updateContactList()
+{
+    let contactInTimeSelected = document.querySelector("#message-directioning").querySelector('.checked p').innerHTML;
+    let tmpElement;
+    let tmpString;
+    document.querySelector('#message-directioning').innerHTML = 
+    `
+    <p>Escolha um contato para enviar mensagem:</p>
+    <div class="selection-div">
+        <div class="side-bar-selection clickable-element checked test" onclick="changeContactSelection(this)">
+            <div>
+                <ion-icon name="people"></ion-icon>
+                <p>Todos</p>
+            </div>
+            <div><img src="imgs/Vector.png" alt="" width="11px" height="9px"></div>
+        </div>
+    </div>
+    `;
+    for (let i = 0; i < user.serverConnections.onlinePeople.length; i++)
+    {
+        tmpString = `${user.serverConnections.onlinePeople[i].name}`
+        tmpElement = document.createElement('p');
+        tmpElement.classList.add('side-bar-selection', 'clickable-element', 'unchecked', `${user.serverConnections.onlinePeople[i].name}`);
+        tmpElement.setAttribute('onclick', 'changeContactSelection(this)');
+
+        tmpElement.innerHTML = 
+        `
+        <div>
+            <ion-icon name="people"></ion-icon>
+            <p>${user.serverConnections.onlinePeople[i].name}</p>
+        </div>
+        <div><img src="imgs/Vector.png" alt="" width="11px" height="9px"></div>
+        `;
+
+        document.querySelector('#message-directioning').appendChild(tmpElement);
+    }
+
+    if (document.querySelector(`.${contactInTimeSelected}`) !== null)
+        {
+            changeContactSelection(document.querySelector(`.${contactInTimeSelected}`));
+        }
+    else
+        {
+            changeContactSelection(document.querySelector('.test'));
+        }
+}
 //Handle Console.log Axios Errors
 function axiosError(error) {
     if (error.response) {
