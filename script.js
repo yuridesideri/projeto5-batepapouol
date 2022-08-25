@@ -135,9 +135,9 @@ function sendMessage()
     let messageText = document.querySelector('.footer-text-divs>textarea').value;
     let message = {
         from: user.userName,
-	    to: document.querySelector("#message-directioning").querySelector(".checked").children[1].innerHTML,
+	    to: document.querySelector("#message-directioning").querySelector(".checked>div").children[1].innerHTML,
 	    text: messageText,
-	    type: document.querySelector("#message-visibility").querySelector(".checked").children[1].innerHTML === 'Público'?'message':'private_message'
+	    type: document.querySelector("#message-visibility").querySelector(".checked>div").children[1].innerHTML === 'Público'?'message':'private_message'
     };
     axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', message).then(populateChat()).catch((error) => {axiosError(error)});
 }
@@ -157,6 +157,14 @@ function changeContactSelection(element)
     element.parentNode.querySelector(".checked").classList.remove("checked");
     element.classList.add("checked");
     element.classList.remove("unchecked");
+    if (document.querySelector("#message-visibility").querySelector(".checked").querySelector('p').innerHTML === 'Privado')
+    {
+        document.querySelector(".directioning-message").innerHTML = `Enviando para ${document.querySelector("#message-directioning").querySelector('.checked').querySelector('p').innerHTML} (privado)`
+    }
+    else
+    {
+        document.querySelector(".directioning-message").innerHTML = "";
+    }
 
 }
 
