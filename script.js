@@ -3,7 +3,7 @@ const user = {
     connection: "Not connected",
     userName: "",
     connectionTime: "",
-    serverConnections: {onlineUpdate: "", messagePopulate: "", onlinePeople: []}
+    serverConnections: {onlineUserUpdate: "", messageUpdate: "", contactUpdate: "", onlinePeople: []}
 }
 
 //SideBar Animations
@@ -54,13 +54,15 @@ function logIn(username, check)
         loadGif.classList.toggle('hide-element');
         user.connection = "Connected";
         user.userName = username;
-        user.serverConnections.onlineUpdate = setInterval(()=>{axios.post('https://mock-api.driven.com.br/api/v6/uol/status', {name: username})}, 5000);
-        user.serverConnections.messagePopulate = setInterval(()=>{populateChat()}, 5000);
+        user.serverConnections.onlineUserUpdate = setInterval(()=>{axios.post('https://mock-api.driven.com.br/api/v6/uol/status', {name: username})}, 5000);
+        user.serverConnections.messageUpdate = setInterval(()=>{populateChat()}, 5000);
+        user.serverConnections.contactUpdate = setInterval(()=>{axios.get('https://mock-api.driven.com.br/api/v6/uol/participants').then(response => user.serverConnections.onlinePeople = response.data).catch(error => axiosError(error));}, 10000);
         document.querySelector(".entry-page").classList.add("logIn-screen-animation");
         setTimeout(()=>{document.querySelector(".entry-page").classList.add("hide-element");}, 1000);
         setTimeout(()=>{document.querySelector(".entry-page").classList.remove("logIn-screen-animation");}, 1000);
         document.querySelector(".main-chat").classList.toggle("hide-element");
         populateChat();
+        axios.get('https://mock-api.driven.com.br/api/v6/uol/participants').then(response => user.serverConnections.onlinePeople = response.data).catch(error => axiosError(error));
     }
 
     else if (check === 0 & username.length <= 20 && username !== "" && !(username.includes(" "))) //Bom nome, checando se está em uso.
@@ -93,6 +95,7 @@ function populateChat(chatHistory)
     {
         let messagesDiv = document.querySelector(".messages-container");
         let tmpElement;
+        messagesDiv.innerHTML = "";
         for (let i = 0; i < chatHistory.length; i++)
         {
             tmpElement = document.createElement("li");

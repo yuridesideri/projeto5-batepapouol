@@ -115,6 +115,9 @@ main{
     margin-bottom: 3px;
     padding: 10px 8px 10px 8px;
     background-color: var(--main-color-light);
+    box-sizing: border-box;
+    overflow-x: hidden;
+    word-break: break-word;
 }
 .status{
     background-color: #DCDCDC;
@@ -210,7 +213,9 @@ nav{
 .logout-div>p{
     margin-left: 5px;
 }
-
+.unchecked>div>img{
+    display: none;
+}
 
 
 
@@ -270,16 +275,22 @@ footer{
     border: 0;
     background-color: transparent;
     border-radius: 18px;
+    height: 40px;
+    width: 40px;
 }
 
 .icon-footer-div>ion-icon{
     font-size: 26px;
     margin-right: 4px;
     margin-top: 4px;
+    transition: 0.5s;
 }
-.unchecked>div>img{
-    display: none;
+.icon-footer-div>ion-icon:active{
+    color:#959595;
+    transform: translate(1px, -1px);
+    transition: 0s;
 }
+
 
 
 
