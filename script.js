@@ -3,7 +3,7 @@ const user = {
     connection: "Not connected",
     userName: "",
     connectionTime: "",
-    serverConnections: {onlineUpdate: "", messagePopulate: ""}
+    serverConnections: {onlineUpdate: "", messagePopulate: "", onlinePeople: []}
 }
 
 //SideBar Animations
@@ -148,6 +148,15 @@ function resetData()
     document.querySelector(".entry-page").classList.add("logOut-screen-animation");
     document.querySelector('.footer-text-divs>textarea').value = '';
     setTimeout(()=>{window.location.reload()}, 1100);
+
+}
+
+function changeContactSelection(element)
+{
+    element.parentNode.querySelector(".checked").classList.add("unchecked");
+    element.parentNode.querySelector(".checked").classList.remove("checked");
+    element.classList.add("checked");
+    element.classList.remove("unchecked");
 
 }
 

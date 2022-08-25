@@ -176,9 +176,11 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 24px 15px 24px;
-    height: 30px;
+    margin: 0 24px 5px 24px;
+    height: 40px;
+    padding-right: 5px;
     border-radius: 5px;
+    overflow-x: hidden;
 }
 .side-bar-selection>div{
     display: flex;
@@ -197,6 +199,18 @@ nav{
 .side-bar-selection>.checked{
     margin-right: 5px;
 }
+
+.logout-div{
+    justify-content: flex-start;
+    margin-top: auto;
+    color: red;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+.logout-div>p{
+    margin-left: 5px;
+}
+
 
 
 
@@ -263,17 +277,10 @@ footer{
     margin-right: 4px;
     margin-top: 4px;
 }
+.unchecked>div>img{
+    display: none;
+}
 
-.logout-div{
-    justify-content: flex-start;
-    margin-top: auto;
-    color: red;
-    padding-left: 5px;
-    box-sizing: border-box;
-}
-.logout-div>p{
-    margin-left: 5px;
-}
 
 
 

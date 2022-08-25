@@ -35,36 +35,40 @@
             <div class="real-side-bar">
                 <div id="message-directioning" class="side-bar-group">
                     <p>Escolha um contato para enviar mensagem:</p>
-                    <div class="side-bar-selection clickable-element">
-                        <div class="checked">
-                            <ion-icon name="people"></ion-icon>
-                            <p>Todos</p>
+                    <div class="selection-div">
+                        <div class="side-bar-selection clickable-element checked" onclick="changeContactSelection(this)">
+                            <div>
+                                <ion-icon name="people"></ion-icon>
+                                <p>Todos</p>
+                            </div>
+                            <div><img src="imgs/Vector.png" alt="" width="11px" height="9px"></div>
                         </div>
-                        <div><img src="imgs/Vector.png" alt="" width="9px" height="7px"></div>
-                    </div>
-                    <div class="side-bar-selection clickable-element">
-                        <div>
-                            <ion-icon name="person-circle-outline"></ion-icon>
-                            <p>Eu</p>
+                        <div class="side-bar-selection clickable-element unchecked" onclick="changeContactSelection(this)">
+                            <div>
+                                <ion-icon name="person-circle-outline"></ion-icon>
+                                <p>Eu</p>
+                            </div>
+                            <div><img src="imgs/Vector.png" alt="" width="11px" height="9px"/></div>
                         </div>
-                        <div><!-- <img src="imgs/Vector.png" alt=""> --> </div>
                     </div>
                 </div>
                 <div class="side-bar-group" id="message-visibility">
                     <p>Escolha a visibilidade:</p>
-                    <div class="side-bar-selection clickable-element">
-                        <div class="checked">
-                            <ion-icon name="lock-open"></ion-icon>
-                            <p>Público</p>
+                    <div class="selection-div">
+                        <div class="side-bar-selection clickable-element checked" onclick="changeContactSelection(this)">
+                            <div>
+                                <ion-icon name="lock-open"></ion-icon>
+                                <p>Público</p>
+                            </div>
+                            <div><img src="imgs/Vector.png" alt="" width="11px" height="9px"></div>
                         </div>
-                        <div><img src="imgs/Vector.png" alt="" width="9px" height="7px"></div>
-                    </div>
-                    <div class="side-bar-selection clickable-element">
-                        <div>
-                            <ion-icon name="lock-closed"></ion-icon>
-                            <p>Privado</p>
+                        <div class="side-bar-selection clickable-element unchecked" onclick="changeContactSelection(this)">
+                            <div>
+                                <ion-icon name="lock-closed"></ion-icon>
+                                <p>Privado</p>
+                            </div>
+                            <div><img src="imgs/Vector.png" alt="" width="11px" height="9px"/></div>
                         </div>
-                        <div><!--<img src="imgs/Vector.png" alt="">--></div>
                     </div>
                 </div>
                 <div class="logout-div clickable-element side-bar-selection" onclick="resetData()">
