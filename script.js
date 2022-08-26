@@ -3,7 +3,8 @@ const user = {
     connection: "Not connected",
     userName: "",
     connectionTime: "",
-    serverConnections: {onlineUserUpdate: "", messageUpdate: "", contactUpdate: "", onlinePeople: []}
+    serverConnections: {onlineUserUpdate: "", messageUpdate: "", contactUpdate: "", onlinePeople: []},
+    sendTo: {node: document.querySelector('.checked'), name: "Todos"}
 }
 
 //SideBar Animations
@@ -64,6 +65,7 @@ function logIn(username, check)
         populateChat();
         axios.get('https://mock-api.driven.com.br/api/v6/uol/participants').then(response => user.serverConnections.onlinePeople = response.data).catch(error => axiosError(error));
         setTimeout(updateContactList, 500);
+        document.querySelector('textarea').addEventListener("keypress", (event)=>{event.key === 'Enter'? sendMessage(): event});
     }
 
     else if (check === 0 & username.length <= 20 && username !== "" && !(username.includes(" "))) //Bom nome, checando se está em uso.
@@ -120,13 +122,16 @@ function populateChat(chatHistory)
             }
             else if (chatHistory[i].type === 'private_message')
             {
-                tmpElement.classList.add("private-message");
-                tmpElement.innerHTML =
-                `<span class='message-time'>(${chatHistory[i].time})</span>
-                <span class='message-person'>${chatHistory[i].from}</span> 
-                reservadamente para 
-                <span class='message-person'>${chatHistory[i].to}</span>: 
-                ${chatHistory[i].text}`;
+                if(chatHistory[i].from === user.userName||chatHistory[i].to === user.userName || chatHistory[i].to === 'Todos' || chatHistory[i].to === 'todos')
+                {
+                    tmpElement.classList.add("private-message");
+                    tmpElement.innerHTML =
+                    `<span class='message-time'>(${chatHistory[i].time})</span>
+                    <span class='message-person'>${chatHistory[i].from}</span> 
+                    reservadamente para 
+                    <span class='message-person'>${chatHistory[i].to}</span>: 
+                    ${chatHistory[i].text}`;
+                }
             }
             messagesDiv.appendChild(tmpElement);
             tmpElement.scrollIntoView();
@@ -161,6 +166,9 @@ function changeContactSelection(element)
     element.parentNode.querySelector(".checked").classList.remove("checked");
     element.classList.add("checked");
     element.classList.remove("unchecked");
+    user.sendTo.node = element;
+    user.sendTo.name = element.querySelector("p").innerHTML;
+
     if (document.querySelector("#message-visibility").querySelector(".checked").querySelector('p').innerHTML === 'Privado')
     {
         document.querySelector(".directioning-message").innerHTML = `Enviando para ${document.querySelector("#message-directioning").querySelector('.checked').querySelector('p').innerHTML} (privado)`
@@ -174,9 +182,8 @@ function changeContactSelection(element)
 
 function updateContactList()
 {
-    let contactInTimeSelected = document.querySelector("#message-directioning").querySelector('.checked p').innerHTML;
+    let clickedElement;
     let tmpElement;
-    let tmpString;
     document.querySelector('#message-directioning').innerHTML = 
     `
     <p>Escolha um contato para enviar mensagem:</p>
@@ -192,9 +199,21 @@ function updateContactList()
     `;
     for (let i = 0; i < user.serverConnections.onlinePeople.length; i++)
     {
-        tmpString = `${user.serverConnections.onlinePeople[i].name}`
+        if (user.sendTo.name === user.serverConnections.onlinePeople[i].name)
+        {
+            clickedElement = document.querySelector(".all-unmutable-class").insertAdjacentElement('afterend', user.sendTo.node);
+            if (!(i === user.serverConnections.onlinePeople.length - 1));
+            {
+                i++;
+            }
+            if (user.serverConnections.onlinePeople[i] === undefined)
+            {
+                changeContactSelection(clickedElement);
+                return;
+            }
+        }
         tmpElement = document.createElement('div');
-        tmpElement.classList.add('side-bar-selection', 'clickable-element', 'unchecked', `${user.serverConnections.onlinePeople[i].name.replace(" ", "-")}`);
+        tmpElement.classList.add('side-bar-selection', 'clickable-element', 'unchecked');
         tmpElement.setAttribute('onclick', 'changeContactSelection(this)');
 
         tmpElement.innerHTML = 
@@ -209,14 +228,14 @@ function updateContactList()
         document.querySelector('.selection-div').appendChild(tmpElement);
     }
 
-    if (document.querySelector(`.${contactInTimeSelected}`) !== null)
-        {
-            changeContactSelection(document.querySelector(`.${contactInTimeSelected}`));
-        }
+    if (clickedElement)
+    {
+        changeContactSelection(clickedElement);
+    }
     else
-        {
-            changeContactSelection(document.querySelector('.all-unmutable-class'));
-        }
+    {
+        changeContactSelection(document.querySelector('.all-unmutable-class'));
+    }
 }
 //Handle Console.log Axios Errors
 function axiosError(error) {
