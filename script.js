@@ -132,6 +132,9 @@ function populateChat(chatHistory)
                     <span class='message-person'>${chatHistory[i].to}</span>: 
                     ${chatHistory[i].text}`;
                 }
+                else{
+                    tmpElement.classList.add("hide-element");
+                }
             }
             messagesDiv.appendChild(tmpElement);
             tmpElement.scrollIntoView();
