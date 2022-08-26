@@ -6,6 +6,11 @@
 html{
     display: hidden;
     overflow-x: hidden;
+    scrollbar-width: 0px !important;
+}
+
+body::-webkit-scrollbar{
+    width: 0px !important;
 }
 
 
@@ -184,7 +189,28 @@ nav{
 .selection-div{
     overflow: scroll;
     height: 30vh;
+    overflow-x: hidden;
 }
+.selection-div::-webkit-scrollbar{
+    background-color: transparent;
+    width: 5px !important;
+}
+.selection-div::-webkit-scrollbar-track {
+    border-radius: 10px;
+    width: 1px;
+    background-color: 10px;
+    display: none;
+  }
+.selection-div::-webkit-scrollbar-thumb{
+    scrollbar-width: 4px;
+    background-color: blue;
+    border-radius: 20px;
+}
+
+#message-visibility>.selection-div::-webkit-scrollbar{
+    display: none;
+}
+  
 
 
 .side-bar-selection{
@@ -192,7 +218,7 @@ nav{
     justify-content: space-between;
     align-items: center;
     margin: auto;
-    height: 40px;
+    min-height: 40px;
     padding-right: 5px;
     border-radius: 5px;
     width: 80%;
@@ -211,6 +237,7 @@ nav{
 .side-bar-selection>div>p{
     font-size: 16px;
     font-weight: 400;
+    word-break: break-word;
 }
 .logout-div{
     justify-content: flex-start;
@@ -265,7 +292,11 @@ footer{
     overflow-y: scroll;
     padding-right: 5px;
     max-height: 35px;
-    min-height: 10
+    min-height: 10;
+    overflow-x: hidden;
+}
+.footer-text-divs>textarea::-webkit-scrollbar{
+    display: none;
 }
 .footer-text-divs>textarea::placeholder {
     font-style: italic;

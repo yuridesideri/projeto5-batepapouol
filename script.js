@@ -194,7 +194,7 @@ function updateContactList()
     {
         tmpString = `${user.serverConnections.onlinePeople[i].name}`
         tmpElement = document.createElement('div');
-        tmpElement.classList.add('side-bar-selection', 'clickable-element', 'unchecked', `${user.serverConnections.onlinePeople[i].name.replace(" ", "")}`);
+        tmpElement.classList.add('side-bar-selection', 'clickable-element', 'unchecked', `${user.serverConnections.onlinePeople[i].name.replace(" ", "-")}`);
         tmpElement.setAttribute('onclick', 'changeContactSelection(this)');
 
         tmpElement.innerHTML = 
