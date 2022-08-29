@@ -283,9 +283,7 @@ footer{
     border: none;
     outline: none;
     padding: 0;
-    padding-right: 0;
     white-space: normal;
-    overflow-x: scroll;
     resize: none; 
     width: 100%;
     line-height:20px;

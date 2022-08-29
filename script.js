@@ -71,7 +71,7 @@ function logIn(username, check)
         document.querySelector('textarea').addEventListener("keypress", (event)=>{event.key === 'Enter'? sendMessage(): event});
     }
 
-    else if (check === 0 & username.length <= 20 && username !== "" && !(username.includes(" "))) //Bom nome, checando se está em uso.
+    else if (check === 0 && username.length <= 20 && username !== "" && !(username.includes(" "))) //Bom nome, checando se está em uso.
     {
         inputBox.classList.toggle('hide-element');
         loadGif.classList.toggle('hide-element');
@@ -154,7 +154,7 @@ function sendMessage()
 	    text: messageText,
 	    type: document.querySelector("#message-visibility").querySelector(".checked>div").children[1].innerHTML === 'Público'?'message':'private_message'
     };
-    axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', message).then(populateChat()).catch((error) => {axiosError(error)});
+    axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', message).then(()=>{populateChat()}).catch((error) => {axiosError(error)});
 }
 
 function resetData()
