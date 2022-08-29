@@ -55,7 +55,7 @@ function logIn(username, check)
         loadGif.classList.toggle('hide-element');
         user.connection = "Connected";
         user.userName = username;
-        user.serverConnections.onlineUserUpdate = setInterval(()=>{axios.post('https://mock-api.driven.com.br/api/v6/uol/status', {name: username})}, 5000);
+        user.serverConnections.onlineUserUpdate = setInterval(()=>{axios.post('https://mock-api.driven.com.br/api/v6/uol/status', {name: username}).catch(()=>{window.location.reload()})}, 5000);
         user.serverConnections.messageUpdate = setInterval(()=>{populateChat()}, 5000);
         user.serverConnections.contactUpdate = [setInterval(()=>{axios.get('https://mock-api.driven.com.br/api/v6/uol/participants').then(response => user.serverConnections.onlinePeople = response.data).catch(error => axiosError(error))}, 5000), setInterval(() => {updateContactList()}, 10000)];
         document.querySelector(".entry-page").classList.add("logIn-screen-animation");
